@@ -1,121 +1,54 @@
+## What is CXPerium?
 
-# CXPerium .NET SDK Dökümantasyonu
+CXPerium is a platform developed for creating custom chatbots on WhatsApp. It enables developers to build chatbot solutions quickly and flexibly using C# and NodeJS SDKs. CXPerium is a product developed by QSoft and provides businesses with solutions for automating customer service, managing orders, and optimizing user interactions.
 
-Bu dökümantasyon, CXPerium .NET SDK'sını kullanarak WhatsApp üzerinde özel chatbotlar oluşturmak isteyen geliştiriciler için hazırlanmıştır. Adım adım ilerleyerek kurulum, konfigürasyon ve geliştirme sürecini kapsar.
+With this documentation and template project, developers can efficiently build advanced digital assistants (chatbots) running on WhatsApp.
 
----
+## Table of Contents
 
-## 1. Adım: **app.cxperium.com Üzerinde İlgili Konfigürasyonu Yapmak**
+1. **Installation and Configuration**
+   
+   - [Installation and Setup](https://github.com/cxperium/QSoft.CxPerium.Assistant/wiki/01.Installation-and-Configuration)
+   - [Assistant Project Template](https://github.com/cxperium/QSoft.CxPerium.Assistant/wiki/02.Assistant-Project-Template)
+   
+2. **Dialogue and NLP Structure**
 
-### 1.1 Hesap Oluşturma veya Oturum Açma
+   - [Creating Dialogues](https://github.com/cxperium/QSoft.CxPerium.Assistant/wiki/03.Creating-a-Dialog)
+   - [CXPerium NLP Structure and Configuration](https://github.com/cxperium/QSoft.CxPerium.Assistant/wiki/04.CxPerium-NLP-Structure-and-Configuration)
+   - [Google Dialogflow Configuration](https://github.com/cxperium/QSoft.CxPerium.Assistant/wiki/05.Google-Dialogflow-Configuration)
+   - [ChatGPT Configuration](https://github.com/cxperium/QSoft.CxPerium.Assistant/wiki/06.ChatGPT-Configuration)
 
-1. [app.cxperium.com](https://app.cxperium.com) adresine gidin.
-2. Hesabınız yoksa "Kaydıt Ol" seçeneğine tıklayarak bir hesap oluşturun:
-   - Ad Soyad
-   - E-posta adresi
-   - Şifre bilgilerini doldurun.
-   - Aktivasyon e-postasını onaylamayı unutmayın.
-3. Hesabınız varsa "Giriş Yap" seçeneğiyle oturum açın.
+3. **Other Settings and Features**
 
----
+   - [Other Configuration Settings](https://github.com/cxperium/QSoft.CxPerium.Assistant/wiki/07.Other-Configuration-Settings)
+   - [Localization Settings](https://github.com/cxperium/QSoft.CxPerium.Assistant/wiki/08.Localization-Settings)
 
-## 2. Adım: **Örnek Projeyi GitHub'dan İndirmek**
+4. **Messaging and Flows**
 
-### 2.1 GitHub Projesine Erişim
+   - [Messaging -1](https://github.com/cxperium/QSoft.CxPerium.Assistant/wiki/09.-Messaging) [Messaging -2](https://github.com/cxperium/QSoft.CxPerium.Assistant/wiki/09.1.Messaging)
+   - [WhatsApp Flows](https://github.com/cxperium/QSoft.CxPerium.Assistant/wiki/10.WhatsApp-Flows)
 
-1. Web tarayıcısından [https://github.com/qsoft-git/CXPerium.Bot.Sample.git](https://github.com/qsoft-git/CXPerium.Bot.Sample.git) adresine gidin.
-2. Proje sayfasında açıklamaları inceleyebilirsiniz.
+5. **CXPerium Modules**
 
-### 2.2 Projeyi İndirme
+   - [CXPerium Modules](https://github.com/cxperium/QSoft.CxPerium.Assistant/wiki/11.CxPerium-Modules)
 
-1. **Code** butonuna tıklayın.
-2. Şu iki seçenekten birini kullanarak projeyi indirin:
-   - **Download ZIP:** Projeyi ZIP formatında bilgisayarınıza indirin.
-   - **Clone with HTTPS:** Git yüklü ise terminal veya Git Bash üzerinde şu komutu çalıştırın:
-     ```bash
-     git clone https://github.com/qsoft-git/CXPerium.Bot.Sample.git
-     ```
+6. **Deployment and Management**
 
-### 2.2.1 NuGet Paketini Eklemek
-
-1. Projeyi bilgisayarınıza indirdikten sonra, CXPerium'un özel NuGet paketini projeye eklemeniz gerekmektedir.
-2. Eklenecek paket: **CXPerium.Controller**
-3. Eğer bu paketi CXPerium özel NuGet paketinde göremiyorsanız, aşağıdaki adımları izleyin:
-   - Visual Studio'da **Tools -> NuGet Package Manager -> Package Manager Settings** menüsüne gidin.
-   - **Package Sources** sekmesine tıklayın.
-   - **Add** butonuna basarak yeni bir kaynak ekleyin:
-     - **Name:** CXPerium
-     - **Source:** [https://nuget.cxperium.com/v3/index.json](https://nuget.cxperium.com/v3/index.json)
-   - **OK** butonuna basarak ayarları kaydedin.
-4. Şimdi, **CXPerium.Controller** paketini projenize NuGet Package Manager üzerinden ekleyebilirsiniz.
-
-### 2.3 Projenin Yapısı ve Varsayılan Ayarlar
-
-- Projeyi indirdikten sonra bir geliştirme ortamı (Visual Studio gibi) kullanarak açın.
-- Varsayılan olarak, proje **http://localhost:3978** portunda çalışır. Bu portu değiştirmek isterseniz, proje içerisindeki **launchSettings.json** dosyasını düzenleyebilirsiniz.
-
-### 2.4 Reverse Proxy Kurulumu
-
-- CXPerium'un verdiği sandbox numarasından WhatsApp'a mesaj gönderildiğinde, bu mesajın geliştiricinin bilgisayarındaki **http://localhost:3978** adresine ulaşması için bir **reverse proxy** kullanılması gerekir.
-- Reverse proxy aracı olarak **ngrok** kullanılır.
-
-#### Ngrok ile Kurulum
-
-1. Ngrok uygulamasını indirip kurun. ([https://ngrok.com/](https://ngrok.com/))
-2. Terminalde şu komutu çalıştırın:
-   ```bash
-   ngrok http 3978 --host-header="localhost:3978"
-   ```
-3. Ngrok size bir public URL verecektir (örneğin: **https://xxxxx.ngrok.io**). Bu URL’yi not edin.
+   - Chatbot Deployment (Coming Soon)
+   - Performance Monitoring and Log Management (Coming Soon)
+   - Security and Access Controls (Coming Soon)
 
 ---
 
-## 3. Adım: **Ngrok URL'sini Projeye Eklemek**
+🔗 **Useful Links**
 
-1. İndirdiğiniz proje dosyalarının içinde **appsettings-dev.json** dosyasını bulun.
-2. Dosyayı bir metin düzenleyicide açın (ör. Visual Studio Code, Notepad++).
-3. Dosyada yer alan **BotUrl** alanını, ngrok tarafından sağlanan URL ile güncelleyin. Örneğin:
-   ```json
-   "BotUrl": "https://xxxxx.ngrok.io"
-   ```
-4. Dosyayı kaydedin.
+- [GitHub Repository](https://github.com/cxperium/QSoft.CxPerium.Assistant)
+- [Wiki Homepage](https://github.com/cxperium/QSoft.CxPerium.Assistant/wiki)
+- [Issue Tracking System](https://github.com/cxperium/QSoft.CxPerium.Assistant/issues)]
 
 ---
 
-## 4. Adım: **CXPerium Platformunda Geliştirici Ayarlarını Yapılandırmak**
+📞 **Support and Contact**
 
-### 4.1 Hook Adresini Projeye Eklemek
-
-1. Daha önce indirdiğiniz proje dosyalarının içinde **appsettings-dev.json** dosyasını bulun.
-2. Dosyayı bir metin düzenleyicide açın.
-3. Dosyada yer alan **HookUrl** alanını, CXPerium Developer Settings ekranında aldığınız **https://hook** ile başlayan adres ile güncelleyin. Örneğin:
-   ```json
-   "HookUrl": "https://hook.example.com"
-   ```
-4. Dosyayı kaydedin.
-
-### 4.2 API Key Oluşturma
-
-1. CXPerium hesabınıza giriş yaptıktan sonra menüye giderek **Ayarlar** seçeneğine tıklayın.
-2. **API Integration** sekmesini açın.
-3. Ekrandaki **Regenerate** butonuna tıklayarak bir API Key oluşturun.
-   - Bu işlem size yeni bir **API Key** verecektir.
-4. Oluşturulan API Key’i güvenli bir yere kaydedin.
-5. Bu **API Key**’i indirdiğiniz proje dosyasındaki **appsettings-dev.json** dosyasındaki **ApiKey** alanına ekleyin. Örneğin:
-   ```json
-   "ApiKey": "your_generated_api_key_here"
-   ```
-6. Dosyayı kaydedin.
-
----
-
-## 5. Adım: **Test Etme**
-
-1. Projeyi çalıştırdıktan sonra CXPerium'un sağladığı sandbox numarasını kullanarak WhatsApp üzerinden test edebilirsiniz.
-   - Sandbox numarası: **+908503094552**
-2. WhatsApp'tan bu numaraya "Merhaba" mesajını gönderin.
-   - Chatbot size "**Hello World**" şeklinde yanıt verecektir.
-
-Bu adımları tamamladıktan sonra chatbotunuzun çalıştığını doğrulayabilirsiniz.
-
-**Tebrikler!** Artık CXPerium tabanlı chatbotunuz başarıyla çalışıyor.
+- For bug reports or feature requests, please use the [Issues](https://github.com/cxperium/QSoft.CxPerium.Assistant/issues) page.
+- Direct contact: **support@qsoft.ai**
