@@ -9,6 +9,7 @@ namespace QSoft.CxPerium.Assistant.Dialogs
         public override void RunDialog()
         {
             this.Messages.SendMessage("Hello World");
+           
         }
     }
 }
