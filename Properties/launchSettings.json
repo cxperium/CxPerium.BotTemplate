@@ -13,7 +13,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "QSoft.CxPerium.Assistant": {
+    "CxPerium.BotTemplate": {
       "commandName": "Project",
       "launchUrl": "http://localhost:3978",
       "applicationUrl": "http://localhost:3978",

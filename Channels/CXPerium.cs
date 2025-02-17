@@ -2,7 +2,7 @@
 using QSoft.CxPerium.Models;
 using QSoft.CxPerium.Webhook;
 
-namespace QSoft.CxPerium.Assistant.Channels
+namespace CxPerium.BotTemplate.Channels
 {
     [Route("api/cxlive/webhook")]
     [Route("api/cxperium/webhook")]

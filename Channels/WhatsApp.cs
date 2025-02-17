@@ -6,7 +6,7 @@ using QSoft.CxPerium.Models;
 using System;
 using System.Collections.Generic;
 
-namespace QSoft.CxPerium.Assistant.Channels
+namespace CxPerium.BotTemplate.Channels
 {
     [Route("api/whatsapp")]
     public class WhatsappController : WpBaseController
