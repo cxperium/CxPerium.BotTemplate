@@ -1,6 +1,4 @@
 ﻿using QSoft.CxPerium.Dialogs.WhatsApp;
-using QSoft.CxPerium.Services;
-using System;
 namespace CxPerium.BotTemplate.Dialogs
 {
     public class MainDialog : WelcomeDialog

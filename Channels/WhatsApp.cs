@@ -58,7 +58,7 @@ namespace CxPerium.BotTemplate.Channels
         /// <param name="activity">It contains information about the message, such as a form, file or text message.</param>
         /// <param name="conversationState">Class that contains information about the conversation</param>
         /// <param name="fullFilment">Response returned from DialogFlow</param>
-        public new virtual void OnDialogFlowMessage(Contact contact, Activity activity, ConversationState conversationState, string fullFilment)
+        public override void OnDialogFlowMessage(Contact contact, Activity activity, ConversationState conversationState, string fullFilment)
         {
             base.OnDialogFlowMessage(contact, activity, conversationState, fullFilment);
         }
@@ -70,7 +70,7 @@ namespace CxPerium.BotTemplate.Channels
         /// <param name="activity">It contains information about the message, such as a form, file or text message.</param>
         /// <param name="conversationState">Class that contains information about the conversation</param>
         /// <param name="fullFilment">Response returned from DialogFlow</param>
-        public new virtual void OnChatGPTMessage(Contact contact, Activity activity, ConversationState conversationState, string response, List<AnnotationFile> annotations)
+        public override void OnChatGPTMessage(Contact contact, Activity activity, ConversationState conversationState, string response, List<AnnotationFile> annotations)
         {
             base.OnChatGPTMessage(contact, activity, conversationState, response, annotations);
         }

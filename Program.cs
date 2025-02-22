@@ -15,8 +15,6 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
-app.UseMiddleware<LoggingMiddleware>();
-
 app
     .UseDefaultFiles()
     .UseStaticFiles()
