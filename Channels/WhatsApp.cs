@@ -106,6 +106,19 @@ namespace CxPerium.BotTemplate.Channels
         }
 
         /// <summary>
+        /// This method is triggered when the user sends an audio message.
+        /// </summary>
+        /// <param name="contact">Information about the user who sent the audio message, as found in the Contacts list in CXPerium.</param>
+        /// <param name="activiy">The activity object that includes the content and metadata of the received audio message.</param>
+        /// <param name="conversationState">Represents the current state of the conversation, including session details, selected language, etc.</param>
+        public override void OnAudioReceived(Contact contact, Activity activiy, ConversationState conversationState)
+        {
+            base.OnAudioReceived(contact, activiy, conversationState);
+        }
+
+
+
+        /// <summary>
         /// This method is triggered when the user sends their cart to the business
         /// </summary>
         /// <param name="contact">Data of the user who sent the message in the Contacts list in CXPerium</param>
